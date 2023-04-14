@@ -1,0 +1,2 @@
+数据集 heart.csv是未经过数据预处理的文件：例如未对类别变量进行独热编码
+数据集 process_heart.csv 是对heart.csv进行独热编码之后的文件
