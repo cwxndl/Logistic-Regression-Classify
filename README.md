@@ -1,0 +1,2 @@
+# Logistic_Classify
+此项目是对逻辑回归算法进行数据分类的完整Python实现
