@@ -110,18 +110,22 @@ class MyLogistic():
     ## 定义训练函数fit
     def fit(self,X_train,y_train):
         import matplotlib.pyplot as plt
-        beta = np.zeros((1,X_train.shape[1]))  ##初始化参数
-
+        # beta = np.zeros((1,X_train.shape[1]))  ##初始化参数
+        self.beta = np.zeros((1,X_train.shape[1]))
         if self.Algorithm =='GD':
-            beta,loss = self.gradient_descent(x=X_train,y=y_train,beta=beta,iters=self.iter_nums)
+            # beta,loss = self.gradient_descent(x=X_train,y=y_train,beta=beta,iters=self.iter_nums)
+            self.beta,loss = self.gradient_descent(x=X_train,y=y_train,beta=self.beta,iters=self.iter_nums)
         else:       
-            beta,loss = self.SGD(x=X_train,y=y_train,beta=beta,iters=self.iter_nums)
+            # beta,loss = self.SGD(x=X_train,y=y_train,beta=beta,iters=self.iter_nums)
+            self.beta,loss = self.SGD(x=X_train,y=y_train,beta=self.beta,iters=self.iter_nums)
         self.plot_loss(loss=loss)
-        return beta    
+        return self.beta    
     
     ## 定义预测函数
-    def predict(self,beta,x):
-        temp_y = np.dot(beta,np.transpose(x))
+    # def predict(self,beta,x):
+    def predict(self,x):
+        # temp_y = np.dot(beta,np.transpose(x))
+        temp_y = np.dot(self.beta,np.transpose(x))
         predict_y = []
         for i in range(temp_y.shape[1]):
             y = self.sigmoid(temp_y[0,i])
